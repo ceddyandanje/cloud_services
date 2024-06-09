@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Database connection
 $conn = new mysqli("localhost", "root", "", "cloud_services");
 
@@ -10,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $admin = $result->fetch_assoc();
 
     if ($admin && password_verify($password, $admin['password'])) {
-        session_start();
         $_SESSION['admin_id'] = $admin['id'];
         header('Location: admin_dashboard.php');
     } else {

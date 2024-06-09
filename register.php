@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Database connection
 $conn = new mysqli("localhost", "root", "", "cloud_services");
 
@@ -10,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
     $sql = "INSERT INTO users (name, email, phone, nationality, password) VALUES ('$name', '$email', '$phone', '$nationality', '$password')";
-
+    
     if ($conn->query($sql) === TRUE) {
         echo "Registration successful!";
     } else {

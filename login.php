@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Database connection
 $conn = new mysqli("localhost", "root", "", "cloud_services");
 
@@ -10,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $result->fetch_assoc();
 
     if ($user && password_verify($password, $user['password'])) {
-        session_start();
         $_SESSION['user_id'] = $user['id'];
         header('Location: dashboard.php');
     } else {
